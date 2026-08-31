@@ -184,6 +184,10 @@ class QueriesFactory {
 
 		}
 
+		if (!queryMethod.isPageQuery()) {
+			return new AotQueries(aotStringQuery);
+		}
+
 		String countProjection = query.getString("countProjection");
 		return AotQueries.withDerivedCountQuery(aotStringQuery, StringAotQuery::getQuery, countProjection, selector);
 	}
@@ -204,6 +208,10 @@ class QueriesFactory {
 		if (hasNamedQuery(returnedType, queryMethod.getNamedCountQueryName())) {
 			return AotQueries.from(aotQuery,
 					createNamedAotQuery(returnedType, selector, queryMethod.getNamedCountQueryName(), queryMethod, nativeQuery));
+		}
+
+		if (!queryMethod.isPageQuery()) {
+			return new AotQueries(aotQuery);
 		}
 
 		String countProjection = query.isPresent() ? query.getString("countProjection") : null;
@@ -279,6 +287,10 @@ class QueriesFactory {
 		if (hasNamedQuery(returnedType, queryMethod.getNamedCountQueryName())) {
 			return AotQueries.from(aotQuery,
 					createNamedAotQuery(returnedType, selector, queryMethod.getNamedCountQueryName(), queryMethod, false));
+		}
+
+		if (!queryMethod.isPageQuery()) {
+			return new AotQueries(aotQuery);
 		}
 
 		AotQuery partTreeCountQuery = createCountQuery(partTree, returnedType, queryMethod.getParameters(), templates,
