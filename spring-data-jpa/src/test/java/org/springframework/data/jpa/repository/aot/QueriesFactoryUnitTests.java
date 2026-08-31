@@ -51,6 +51,7 @@ import org.springframework.data.repository.core.support.AbstractRepositoryMetada
  *
  * @author Christoph Strobl
  * @author Mark Paluch
+ * @author Usman Ejaz
  */
 class QueriesFactoryUnitTests {
 

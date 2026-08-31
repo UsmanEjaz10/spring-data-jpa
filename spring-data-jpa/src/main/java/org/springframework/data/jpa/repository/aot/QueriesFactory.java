@@ -59,6 +59,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Mark Paluch
  * @author Christoph Strobl
+ * @author Usman Ejaz
  * @since 4.0
  */
 class QueriesFactory {
